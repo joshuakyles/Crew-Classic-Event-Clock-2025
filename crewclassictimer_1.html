@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Event Viewer&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: red;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#time, #date {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#eventDetails {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.arrow {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.left {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.right {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>select {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media screen and (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>font-size: 1.2em;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="time"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="date"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;select id="eventSelect" onchange="selectEvent()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value=""&gt;-- Select an Event --&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="arrow left" onclick="prevEvent()"&gt;&amp;#9664;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="eventDetails"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="arrow right" onclick="nextEvent()"&gt;&amp;#9654;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateTime() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const now = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('time').textContent = now.toLocaleTimeString('en-GB', { hour12: false });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('date').textContent = now.toDateString();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(updateTime, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateTime();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const events = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 1, date: 'Friday, March 28, 2025', time: '2:30 PM', name: 'Club Mx Masters 8 - Heat 1' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 2, date: 'Friday, March 28, 2025', time: '2:38 PM', name: 'Club Mx Masters 8 - Heat 2' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 3, date: 'Friday, March 28, 2025', time: '2:54 PM', name: 'Club Intermediate Mx Masters 8 - Final' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 4, date: 'Friday, March 28, 2025', time: '2:54 PM', name: 'Club Novice Masters Mx8 - Final' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 5, date: 'Friday, March 28, 2025', time: '3:02 PM', name: 'Womens Masters D Cup (50-54) - Final' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 6, date: 'Friday, March 28, 2025', time: '3:10 PM', name: 'Mens Masters D (50-54) - Final' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 7, date: 'Friday, March 28, 2025', time: '3:18 PM', name: 'Club Masters M4X - Heat 1' },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ number: 8, date: 'Friday, March 28, 2025', time: '3:26 PM', name: 'Club Masters M4X - Heat 2' }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 9; i &lt;= 200; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>events.push({ number: i, date: 'TBD', time: 'TBD', name: `Event ${i}` });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentIndex = 0;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function prevEvent() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentIndex &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentIndex--;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayEvent();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function nextEvent() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentIndex &lt; events.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayEvent();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const eventSelect = document.getElementById('eventSelect');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>events.forEach((event, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let option = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>option.value = index;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>option.textContent = `#${event.number} - ${event.date} - ${event.time} - ${event.name}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>eventSelect.appendChild(option);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function selectEvent() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const selectedIndex = eventSelect.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (selectedIndex !== "") {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentIndex = parseInt(selectedIndex);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>displayEvent();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function displayEvent() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('eventDetails').innerHTML = `&lt;p&gt;&lt;strong&gt;#${events[currentIndex].number} - ${events[currentIndex].date}&lt;/strong&gt;&lt;br&gt;${events[currentIndex].time} - ${events[currentIndex].name}&lt;/p&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>eventSelect.value = currentIndex;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function autoUpdateEvent() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const now = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const currentDate = now.toDateString();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; events.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (events[i].date === currentDate &amp;&amp; events[i].time === currentTime) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentIndex = i;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>displayEvent();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(autoUpdateEvent, 60000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displayEvent();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
